@@ -18,6 +18,7 @@ html {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  overflow: hidden;
 }
 .table {
   display: table;
@@ -31,8 +32,8 @@ html {
 }
 .modal {
   position: relative;
-  width: 400px;
-  height: 600px;
+  width: 600px;
+  height: 800px;
   margin: 0 auto;
   background: #fff;
   box-shadow: 0 40px 50px rgba(0, 0, 0, 0.35);
@@ -151,6 +152,18 @@ button:disabled {
   margin-top: 0px;
 }
 
+#cal-cluster {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cal-cluster img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+
 #overlay {
   position: absolute;
   top: 0;
@@ -166,11 +179,13 @@ button:disabled {
   margin-top: 20px;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .box {
+  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -187,4 +202,13 @@ button:disabled {
 h2 {
   color: #666;
   text-align: center;
+  margin: 20px 10px;
 }
+.loading {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+

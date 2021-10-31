@@ -22,15 +22,22 @@
             <input
               min="1"
               type="number"
-              placeholder="Số nhóm màu"
+              placeholder="Số cụm màu"
               id="cluster-num"
+              disabled
             />
-            <button id="cal-cluster">Tối ưu cụm</button>
+            <button id="cal-cluster">
+              Tìm cụm
+            </button>
           </div>
           <p id="alert"></p>
           <button id="get-colors" disabled>Phân tích</button>
 
           <h2>Result</h2>
+          <div class="loading">
+            <img src="/statics/loading.svg" alt="" srcset="">
+            <h3>Đang xử lý</h3>
+          </div>
           <div id="result">
             
           </div>

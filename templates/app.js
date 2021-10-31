@@ -53,7 +53,6 @@ $('#mediaFile').change(function (e) {
 
     reader.readAsDataURL(file);
     reader.onload = function (e) {
-      console.log(reader.result);
       $('#profile').css('background-image', 'url(' + reader.result + ')').addClass('hasImage');
     }
   }
@@ -83,26 +82,38 @@ $("#cluster-num").keyup(function (e) {
 
 
 // Optimized cluster
-
+function loading_cluster() {
+  $("#cal-cluster").html(`<img src="/statics/loading.svg" alt="" srcset="">
+  <h3>Đang xử lý</h3>`)
+  $("#cal-cluster").prop('disabled', true);
+}
 $("#cal-cluster").click(async function (e) {
-  // let input = document.getElementById("mediaFile");
-  // let valid = alertError(input.files[0], "Vui lòng upload ảnh !")
-  // if (!valid) return
-  // let data = new FormData()
-  // data.append("image", input.files[0])
+  let input = document.getElementById("mediaFile");
+  let valid = alertError(input.files[0], "Vui lòng upload ảnh !")
+  if (!valid) return
+  let data = new FormData()
+  data.append("image", input.files[0])
+  loading_cluster()
+  let res = await fetch("/cluster", {
+    method: "POST",
+    body: data
+  })
+  let dataRes = await res.json()
 
-  // let res = await fetch("/cluster", {
-  //   method: "POST",
-  //   body: data
-  // })
-  // let dataRes = await res.json()
-  // console.log(dataRes);
+  $("#cal-cluster").html(`Tìm cụm`)
+  $("#cal-cluster").prop('disabled', false);
+  $("#get-colors").prop('disabled', false);
+  $("#cluster-num").val(dataRes)
 })
 
 // Lấy dữ liệu về màu và in ra màn hình
 $("#get-colors").click(async function (e) {
-  
+
   $("#result").empty();
+  $("#get-colors").prop('disabled', true);
+  $("#cal-cluster").prop('disabled', true);
+
+  $(".loading")[0].style.display = "flex"
 
   let inputImg = document.getElementById("mediaFile");
   let inputCluster = document.getElementById("cluster-num");
@@ -111,16 +122,14 @@ $("#get-colors").click(async function (e) {
   // if (!valid) return
   let data = new FormData()
   data.append("image", inputImg.files[0])
-  console.log("hello");
   data.append("cluster", inputCluster.value)
   let res = await fetch("/get-colors", {
     method: "POST",
     body: data
   })
   let dataRes = await res.json()
-  
-  for(let color of dataRes) {
-    console.log(color);
+
+  dataRes.forEach((color, i) => {
     let box = document.createElement("div")
     box.classList.add("box")
 
@@ -134,6 +143,9 @@ $("#get-colors").click(async function (e) {
     box.appendChild(textColor);
 
     $("#result").append(box);
-  }
+  })
 
+  $(".loading")[0].style.display = "none"
+  $("#cal-cluster").prop('disabled', false);
+  $("#get-colors").prop('disabled', false);
 })
