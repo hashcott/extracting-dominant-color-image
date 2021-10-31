@@ -22,5 +22,8 @@ pip install -r requirements.txt
 ```
 flask run
 ```
-
+### Ngrok special version
+```
+pip install git+https://github.com/gstaff/flask-ngrok
+```
 ### Using localhost or ngrok to open it
