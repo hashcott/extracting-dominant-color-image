@@ -42,8 +42,10 @@ window.addEventListener("drop", function(e) {
   e.preventDefault();
 }, false);
 $('#mediaFile').change(function(e) {
-
+  
   var input = e.target;
+  alertError(input.files[0],"Vui lòng upload ảnh !")
+
   if (input.files && input.files[0]) {
     var file = input.files[0];
 
@@ -56,3 +58,38 @@ $('#mediaFile').change(function(e) {
     }
   }
 })
+
+
+// Xuất lỗi
+function alertError(value, msg) {
+  if(!value || parseInt(value) <= 0) {
+    document.getElementById("alert").innerText = msg
+    document.getElementById("alert").style.display = "block"
+    return false;
+  }
+  document.getElementById("alert").style.display = "none"
+  return true;
+}
+
+// Validate number of cluster
+$("#cluster-num").keyup(function(e) {
+ alertError(e.target.value,"Vui lòng số cluster sai (Yêu cầu > 0) !")
+})
+
+
+// Optimized cluster
+
+$("#cal-cluster").click(async function(e) {
+  let input = document.getElementById("mediaFile");
+  let valid = alertError(input.files[0],"Vui lòng upload ảnh !")
+  if(!valid) return
+  let data = new FormData()
+  data.append("image", input.files[0])
+
+  let res = await fetch("/cluster", {
+    method : "POST",
+    body: data
+  })
+  let dataRes = await res.json()
+  console.log(dataRes);
+ })

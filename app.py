@@ -10,9 +10,15 @@ def send_js(path):
 
 @app.route("/")
 def index():
-    pagetitle = "HomePage"
-    return render_template("index.html",
-                            mytitle="Hanh",
-                            mycontent="Hello World")
+    return render_template("index.html")
+
+
+@app.route("/cluster", methods=['POST'])
+def cluster():
+  uploaded_file = request.files['image'] 
+  print(uploaded_file)
+
+  return jsonify([1])
+
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
