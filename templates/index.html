@@ -24,24 +24,29 @@
               type="number"
               placeholder="Số cụm màu"
               id="cluster-num"
-              disabled
             />
-            <button id="cal-cluster">
-              Tìm cụm
-            </button>
+            <button id="cal-cluster">Tìm cụm</button>
           </div>
+          <button id="myBtn">Hiển thị</button>
+
           <p id="alert"></p>
           <button id="get-colors" disabled>Phân tích</button>
 
           <h2>Result</h2>
           <div class="loading">
-            <img src="/statics/loading.svg" alt="" srcset="">
+            <img src="/statics/loading.svg" alt="" srcset="" />
             <h3>Đang xử lý</h3>
           </div>
-          <div id="result">
-            
-          </div>
+          <div id="result"></div>
         </div>
+      </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal-img">
+      <!-- Modal content -->
+      <div class="modal-img-content">
+        <span class="close">&times;</span>
+        <img id="elbow-img" src="/statics/elbow.png" alt="" srcset="" />
       </div>
     </div>
     <script

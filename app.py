@@ -1,12 +1,13 @@
 # flask_ngrok_example.py
 from flask import Flask, jsonify, request, render_template, send_from_directory
+import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
 import kmean as KMeans
-from flask_ngrok import run_with_ngrok
+# from flask_ngrok import run_with_ngrok
 app = Flask(__name__,  static_url_path='')
 app.config['UPLOAD_FOLDER'] = "statics/image/"
 
-run_with_ngrok(app)
+# run_with_ngrok(app)
 
 
 @app.route('/statics/<path:path>')
@@ -27,7 +28,12 @@ def cluster():
 
     elbow = KMeans.get_elbow(
         app.config['UPLOAD_FOLDER'] + secure_filename(image.filename))
-
+    K = range(1, len(elbow) + 1)
+    plt.plot(K, elbow, 'bx-')
+    plt.xlabel('Values of K')
+    plt.ylabel('Distortion')
+    plt.title('The Elbow Method using Distortion')
+    plt.savefig('./templates/elbow.png')
     k = 1 
     max = -1
     for i in range(0, len(elbow)):
