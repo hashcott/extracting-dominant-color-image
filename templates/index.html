@@ -18,20 +18,15 @@
           <div id="profile">
             <div class="dashes"></div>
             <label>Upload ảnh</label></div>
-          <div class="editable"><i class="fa fa-pencil"></i><h1 contenteditable>Số cụm</h1></div>
-          <div class="stat">
-            <div class="label">Số cụm</div>
-            <div class="num">40</div>
-          </div>
-          <div class="stat">
-            <div class="label">Kích thước ảnh</div>
-            <div class="num">1</div>
-          </div>
-          <button>Phân tích</button>
+            <input type="file" id="mediaFile" />
+            <div id="cluster">
+              <input type="number" placeholder="Số nhóm màu" name="cluster">
+              <button id="cal-cluster">Tối ưu cụm</button>
+            </div>
+            <button>Phân tích</button>
         </div>
       </div>
     </div>
-    <input type="file" id="mediaFile" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/statics/app.js"></script>
 
