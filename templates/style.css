@@ -30,6 +30,7 @@ html {
   vertical-align: middle;
 }
 .modal {
+  position: relative;
   width: 400px;
   height: 600px;
   margin: 0 auto;
@@ -39,7 +40,7 @@ html {
 }
 #mediaFile {
   position: absolute;
-  top: -1000px;
+  z-index: -9;
 }
 #profile {
   width: 300px;
@@ -133,7 +134,57 @@ button {
   text-transform: uppercase;
 }
 
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+
+button:disabled {
+  background-color: #666;
+  transform: scale(1);
+}
+
+
 #cluster button {
   width: 40%;
   margin-top: 0px;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #666;
+}
+
+
+#result {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.color {
+  width: 50px;
+  height: 50px;
+  background-color: #ea4c89;
+  border-radius: 100%;
+}
+
+h2 {
+  color: #666;
+  text-align: center;
 }
