@@ -1,6 +1,9 @@
 # flask_ngrok_example.py
 from flask import Flask, jsonify, request, render_template, send_from_directory
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import os
 from werkzeug.utils import secure_filename
 import kmean as KMeans
 # from flask_ngrok import run_with_ngrok
@@ -33,7 +36,9 @@ def cluster():
     plt.xlabel('Values of K')
     plt.ylabel('Distortion')
     plt.title('The Elbow Method using Distortion')
+    os.remove('./templates/elbow.png')
     plt.savefig('./templates/elbow.png')
+    plt.close()
     k = 1 
     max = -1
     for i in range(0, len(elbow)):
