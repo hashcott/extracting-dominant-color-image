@@ -10,6 +10,7 @@ $('#profile').on('dragover', function () {
   $('#profile').removeClass('dragging')
 }).on('drop', function (e) {
   $('#profile').removeClass('dragging hasImage');
+  $("#result").empty();
 
   if (e.originalEvent) {
     var file = e.originalEvent.dataTransfer.files[0];
@@ -42,6 +43,9 @@ window.addEventListener("drop", function (e) {
   e.preventDefault();
 }, false);
 $('#mediaFile').change(function (e) {
+  $("#result").empty();
+  $("#get-colors").prop('disabled', true);
+  $("#cluster-num").val("")
 
   var input = e.target;
   alertError(input.files[0], "Vui lòng upload ảnh !")
