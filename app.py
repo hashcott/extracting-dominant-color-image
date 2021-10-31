@@ -2,12 +2,11 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 import kmean as KMeans
-# from flask_ngrok import run_with_ngrok
-
+from flask_ngrok import run_with_ngrok
 app = Flask(__name__,  static_url_path='')
 app.config['UPLOAD_FOLDER'] = "statics/image/"
 
-# run_with_ngrok(app)
+run_with_ngrok(app)
 
 
 @app.route('/statics/<path:path>')
@@ -53,3 +52,6 @@ def getColors():
         app.config['UPLOAD_FOLDER'] + secure_filename(image.filename), n_colors=int(cluster))
     return jsonify(colors)
 
+
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True)
