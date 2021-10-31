@@ -53,6 +53,3 @@ def getColors():
         app.config['UPLOAD_FOLDER'] + secure_filename(image.filename), n_colors=int(cluster))
     return jsonify(colors)
 
-
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
